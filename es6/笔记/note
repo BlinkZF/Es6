@@ -45,3 +45,13 @@ es6中的扩展运算符(spreed&rest)
     注意：这个里的...arg运算符 可以将形参直接转化成数组类型
 作用：简化书写长度，提升开发效率
 es6/es7：es6可以处理数组，es7可以处理对象
+
+解构(destructuring)也称结构化赋值
+    解构的过程中具备两个功能，赋值和变量声明
+    目的在于把等于号两边长的相似的东西内部取出来。
+    对象数组都可以参见解构：
+        let obj = {name：'zhangfan',age = 18};
+        let {name,age} = obj;
+        let name,age;({name:,age} = obj)};
+    作用：简化书写长度,提高开发效率
+    默认参数:let {name,age,sex = 'male'} = obj;
