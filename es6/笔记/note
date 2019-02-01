@@ -87,4 +87,7 @@ es5-Object.defineProperty
 注意事项：在描述符中value，writable和set，get这两组是不能同时出现的，同时出现会出现异常
 作用：双向数据绑定的核心方法，主要做数据劫持操作(监控属性变化) 同时是后期es6语法中很多语法糖的底层实现的核心方法
 
-数据劫持
+数据劫持：
+vue双向数据绑定核心功能有Observer，compile，watcher三部分实现，其中Pbserver部分功能实现由object.defineProperty实现
+Observer：监测数据变化进行相应的回调(数据劫持);监测数据的变化，然后展示到视图中
+
