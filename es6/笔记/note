@@ -70,3 +70,21 @@ es6/es7：es6可以处理数组，es7可以处理对象
     内部arguments this由定义时外围最接近一层的费箭头函数的arguments和this决定其值
 
 
+es5-Object.defineProperty
+这个方法会直接在一个对象上定义一个新的 具有详细描述的属性，或者修改一个对象的现有属性，并返回这个对象
+使用：
+    Object.defineProperty(对象，属性，描述符);
+    描述符对，对象的属性的进行详细描述:
+        数据描述符:
+                value:'xxx' 属性值。默认
+                writable:true 是否可写。默认false
+                configurable:true 是否可配置，默认false
+                enumerable：true 是否可枚举，默认false
+        存取描述符:
+            set:function(){}属性访问器 进行写操作时调用该方法
+            get:function(){}属性访问器 进行读操作时调用该方法
+
+注意事项：在描述符中value，writable和set，get这两组是不能同时出现的，同时出现会出现异常
+作用：双向数据绑定的核心方法，主要做数据劫持操作(监控属性变化) 同时是后期es6语法中很多语法糖的底层实现的核心方法
+
+数据劫持
