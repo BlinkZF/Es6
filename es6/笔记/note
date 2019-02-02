@@ -91,3 +91,11 @@ es5-Object.defineProperty
 vue双向数据绑定核心功能有Observer，compile，watcher三部分实现，其中Pbserver部分功能实现由object.defineProperty实现
 Observer：监测数据变化进行相应的回调(数据劫持);监测数据的变化，然后展示到视图中
 
+Proxy&Reflect
+这两种是前端发展过程中新增的东西，所以没有办法使用babel将其转化
+
+简介:植入代理模式思想,以简介易懂的方式控制对外部对象的访问
+总结:利用内置的set get方法，控制属性的读写功能用处较大，其余has deleProperty...等方法不太在工作开发中使用。有兴趣可以了解一下，
+缺点：兼容性不好
+
+Proxy(代理)：以简洁易懂的方式控制外部对对象的访问，之前用的方法是object.defineProperty+set+get进行控制的
