@@ -108,3 +108,9 @@ class(构造函数)
 面向对象的优点是：代码的复用率很高， 相对发杂业务为了做到功能复用， 降低项目的复杂度，
 
 es6变化class
+
+es7变化-class提案属性(浏览器不支持，可以使用babel来操作语言降级)
+新特性：
+    static property = xxx；静态属性
+    property = xxx；私有属性
+    @decorator 装饰器
