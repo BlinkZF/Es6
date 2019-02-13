@@ -113,7 +113,7 @@ oInpot.oninput = function () {
 };
 
 oBtn.onclick = function () {
-  oS.getContent();
+  oS.getContent(1, 2);
 }; // 装束一个类
 
 
