@@ -152,3 +152,4 @@ es6变化-map
 实现的方法：set get delete has clear
 
 es6新方法：object.is(比较两个数据是不是严格相等)  可以比较NaN 
+          Object.is(key, NaN)  判断key等不等于NaN

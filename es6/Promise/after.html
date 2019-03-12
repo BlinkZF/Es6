@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.js"></script> -->
+</head>
+<body>
+    <input type="text" id="inp">
+    <input type="button" id="btn" value="确定">
+    <script>
+    var arr= [];
+    let oBtn = document.getElementById('btn') 
+    let oInp = document.getElementById('inp') 
+    oBtn.onclick = function () {  
+        arr.push(oInp.value);
+        // if(arr.length == 5){
+        //    show(arr)
+        // }
+        newShow(arr);
+    }
+    function show(data) {  
+        console.log(data)
+    }
+
+    // after 辅助管理回调 --源码  
+    // 管理思想:有没有满足我的执行条件
+    let newShow =  after(5,show);//次数，回调函数
+    // 在上面的循环中，newShow每次都会执行，但是当执行到第五次的时候执行回调函数show
+    function after(num,func) {  
+        return function(){
+            if(--num == 0){
+                func.apply(window,arguments)
+            }
+        }
+    }
+    </script>
+</body>
+</html>
