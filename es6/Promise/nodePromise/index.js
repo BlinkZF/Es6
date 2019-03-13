@@ -37,27 +37,59 @@ let fs = require('fs')
 
 
 // 并发异步操作  
-let oStudent = {}
+// let oStudent = {}
 
-function show1(data) {  
+// function show1(data) {  
+//     console.log(data);
+// }
+// function show2(data) {  
+//     console.log(data,2);
+// }
+
+// fs.readFile("./demo1",'utf-8',(err,data) =>{
+//     if(data) oStudent.name = data;
+//     Store.fire(oStudent)
+// })
+// fs.readFile("./test1",'utf-8',(err,data) =>{
+//     if(data) oStudent.name = data;
+//     Store.fire(oStudent)
+// })
+// fs.readFile("./test2",'utf-8',(err,data) =>{
+//     if(data) oStudent.name = data;
+//     Store.fire(oStudent)
+// })
+
+function readFile(path) {  
+    return new Promise((res,rej)=>{
+        fs.readFile(path,'utf-8',(err,data)=>{
+            if(data){
+                res(data);
+            }
+        })
+    })
+}
+readFile('./demo1').then((data)=>{
+    return readFile(data);
+}).then((data)=>{
+    return readFile(data);
+}).then((data)=>{
     console.log(data);
-}
-function show2(data) {  
-    console.log(data,2);
-}
+})
 
-fs.readFile("./demo1",'utf-8',(err,data) =>{
-    if(data) oStudent.name = data;
-    Store.fire(oStudent)
-})
-fs.readFile("./test1",'utf-8',(err,data) =>{
-    if(data) oStudent.name = data;
-    Store.fire(oStudent)
-})
-fs.readFile("./test2",'utf-8',(err,data) =>{
-    if(data) oStudent.name = data;
-    Store.fire(oStudent)
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 优化方法
 // function after(times,cb) {  
 //     return function(){
@@ -68,20 +100,20 @@ fs.readFile("./test2",'utf-8',(err,data) =>{
 
 // Promise 原理--- 发布订阅
 
-let  Store = {
-    list:[],
-    times:3,
-    subscribe(func){
-        this.list.push(func)
-    },
-    fire(...arg){
-        --this.times == 0 && this.list.forEach((ele)=>{
-            ele.apply(null,arg)
-        })
-    }
-}
-Store.subscribe(show1)
-Store.subscribe(show2)
+// let  Store = {
+//     list:[],
+//     times:3,
+//     subscribe(func){
+//         this.list.push(func)
+//     },
+//     fire(...arg){
+//         --this.times == 0 && this.list.forEach((ele)=>{
+//             ele.apply(null,arg)
+//         })
+//     }
+// }
+// Store.subscribe(show1)
+// Store.subscribe(show2)
 
 
 // 跟好的办法是Promise.all

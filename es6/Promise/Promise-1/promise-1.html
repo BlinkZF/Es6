@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise 承诺 -- 异步
+        // executor function  与promise是同步执行的
+        // jQuery中deferred
+        // done       fail      progress  分别注册成功失败..的回调函数
+        // resolve   reject     notify   分别触发
+        // Promise内部：pending(等待状态) onFulfilled(成功) onReject(失败)
+        // let oP = new Promise((resolve,reject)=>{
+        //     //异步操作
+        //     setTimeout(()=>{
+        //         Math.random() * 100 > 10 ? resolve('ok'):reject('no');
+        //     },1000)
+        // });
+        // 在jQuery中.then可以注册三个回调函数
+        // then注册的函数不是同步执行的,是异步执行的
+
+        //在异步操作中有两种任务：
+        // 宏任务：ajax setTimeout在这类的 是宏任务，会优先放到任务队列中执行
+        // 微任务：后放到任务队列中 (有优先执行权)      
+        // oP.then((val)=>{
+        //     console.log(val)
+        // },(reason)=>{
+        //     console.log(reason)
+        // })//只能注册成功和失败的两个回调函数
+        
+        let oP = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                Math.random() * 100 > 10 ? resolve('ok'):reject('no');
+            },1000)
+        })
+        // then的链式调用
+        // 如果在前面的then执行完成之后没有手动抛出一个错误，则后面的then执行的一定是一个成功的
+        // 前面then的返回值会作为下一个then注册函数执行的参数
+        // 前一个then执行返回值是Promise对象,下一个then注册函数的时候里面val/reason谁执行取决于前一个then中是谁执行了
+        // 前一个then注册函数返回错误,下一个then的失败回调会执行
+        // 在then中注册函数,可以只注册成功/失败,注册失败的时候前面用null占位
+        // oP.then((val)=>{
+        //     console.log(val)
+        //     // return 20
+        //     return new Promise((resolve,reject)=>{
+        //         resolve('new Promise');
+        //     })
+        // },(reason)=>{
+        //     console.log(reason)
+        //     return 30
+        // }).then((val)=>{ 
+        //     console.log('ok then2')
+        // },(reason)=>{
+        //     console.log('no then2')
+        // })
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
