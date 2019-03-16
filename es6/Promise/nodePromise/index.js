@@ -77,19 +77,6 @@ readFile('./demo1').then((data)=>{
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 优化方法
 // function after(times,cb) {  
 //     return function(){
@@ -116,7 +103,7 @@ readFile('./demo1').then((data)=>{
 // Store.subscribe(show2)
 
 
-// 跟好的办法是Promise.all
+// 最好的办法是Promise.all
 
 
 

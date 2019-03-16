@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./MyPromise.js"></script>
+    <script>
+
+        // promise执行必须传递一个executor(执行)函数 同步执行
+        // 函数中有两个参数
+        // 触发fulfilled(成功) Rejected(失败)两个状态  根据这两个状态触发不同的回调函数
+        // 两个没有触发之前处于panding(等待)状态
+        let oP = new MyPromise((res, rej) => {
+            // setTimeout(() => {
+            //     rej(0)//执行之后
+            // }, 2000)
+            // console.log(0)
+            res(0)//执行之后
+        })
+        // 通过不同的状态触发不同的回调函数
+        // oP.then((val) => {    
+        //     console.log(val, 'ok')
+        //     console.log(1);
+        // }, (reason) => {
+        //     console.log(reason, 'no')
+        //     console.log(2);
+        // }).then((val)=>{//注册成功和失败的回调
+        //     console.log(val,'ok2')
+        // },(reason)=>{
+        //     console.log(reason);
+        //     console.log(reason,'no2')
+        // })
+
+        //异步执行
+        // throw new Error 
+        // oP.then((val) => {
+        //     console.log(val, 'ok')
+        //     return new MyPromise((res,rej)=>{
+        //         rej(0);
+        //     })
+            
+        // }, (reason) => {
+        //     console.log(reason, 'no');
+        // //当这里写空的时候，就相当这个then里面写了的都是空的函数 什么执行都没有
+        // //同样如果没有写回调函数的话 同样当尚面爆出错误的时候会自动忽视
+        // }
+        // // ).then(
+        //     // throw new Error(reason) //这里可以将错误接收到之后 再抛出去
+        // ).then((val)=>{    
+        //     console.log(val,"ok 空then");
+        // },(reason)=>{
+        //     console.log(reason,"no 空then");
+        // })
+        // 第一个then中注册了一个成功的回调函数->(返回值是一个新的promise对象(newPromise)
+        // 当触发第二个then的时候，给第一个then的返回值(nextPromise)注册成功和失败的回调
+
+        
+        function test(delay,x) {  
+            return new MyPromise(function (res,rej) {        
+                setTimeout(function () {  
+                    rej('no:'+x)
+                },delay)  
+            });
+        }
+        // test(200,'a').then((val)=>{
+        //     console.log(val);
+        // },(reason) =>{
+        //     console.log(reason)   
+        // });
+
+        Promise.race([test(200,'a'),test(300,'b'),test(100,'c')]).then(function (val) {  
+            console.log(val)
+        },function (reason) {  
+            console.log(reason);
+        })
+
+
+
+
+
+        
+    </script>
+</body>
+
+</html>
