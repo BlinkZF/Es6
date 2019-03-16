@@ -1,0 +1,10 @@
+async:是一个函数，是Generator的语法糖，
+      通过babel编译后可以看出他就是Generator+Promise+Co递归思想实现的，配合await使用
+    目的：优雅的解决异步异步草坐问题
+
+异步操作中出现的问题：
+1：回调地狱
+2：try。catch 只能捕获同步操作的异常
+3：同步并发异步的结果
+
+babel转化：npx babel async+await.js -o demo.js

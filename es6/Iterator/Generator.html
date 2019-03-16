@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function* test() {  //这个星号写在哪都行 只要是在function和函数名之间
+        //     yield 'a'; //产出
+        //     yield 'b';
+        //     yield 'c';
+        //     return 'd';
+        // }
+        // let oG = test();
+         //返回对象{value：'a'，done：false}
+
+        //  yield分段执行步骤
+        //  function* test() { 
+        //   let value1 =  yield 'a'; //第一次oG.next()先执行yield 'a';
+        //   console.log(value1)      
+        //第二次oG.next()执行，let value1 = 然后console.log(value1)  yield 'b'这样依次执行
+        //注意这里的value1并不是yield a返回得我值，而是当第二次next('two')的时候，传入的参数
+        //所以console.log()输出的值不是取决于yield返回什么。而是取决于传入的参数
+        // 蛇形走位 
+        //   let value2 =  yield 'b';
+        //   console.log(value2)
+        //   let value3 =  yield 'c';
+        //   console.log(value2)
+        //     return 'd';
+        // }    
+        // let oG = test();
+
+        // 改造函数：
+        let obj = {
+            0: 'a',
+            1: 'b',
+            2: 'c',
+            3: 'd',
+            length:4,
+            [Symbol.iterator]: function *() {
+                let currIndex = 0;
+                while(currIndex != this.length){
+                    yield this[currIndex];
+                    currIndex++
+                }
+            }
+        }
+        console.log([...obj])
+
+        // let curIndex = 0;
+        //         let next = () => {
+        //             return {
+        //                 value: this[curIndex],//表示当前迭代的这个值
+        //                 done: this.length == ++curIndex,//表示有没有迭代完
+        //             }
+        //         }
+        //         return {
+        //             next
+        //         }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [1, 2, 3];
+        // 外部迭代器
+        // function OuterIterator(o) {
+        //     let curIndex = 0;
+        //     let next = () => {
+        //         return {
+        //             value: o[curIndex],
+        //             done: o.length == ++curIndex?true:false,
+        //         }
+        //     }
+        //     return {
+        //         next
+        //     }
+        // }
+        // let oIt = OuterIterator(arr);
+        // console.log(...new Set([1,2,3]))
+
+        let os = Symbol('abc')
+        // console.log(typeof os);//symbol
+        // console.log(os);//Symbol(abc)
+
+        // 要是里面是对象的化必须具有一个toString方法,如果没有toSting方法他会沿着原型链向上找
+        // let os2 = Symbol({
+        //     name:'张凡',
+        //     toString:function(){
+        //         return 'lalalla' //这里的返回值会作为最终显示的值,注意当显示的时候他的类型是symbol，而不是字符串
+        //     }
+        // })
+        // let os2 = Symbol('abc')
+        // os2 == os  //false
+        // symbol是具有唯一性的，创建两个相同的但是名称不一样，他们两个是不相等的
+        // let obj = {
+        //     [os2]:'啦啦啦啦',
+        //     [os]:'呵呵呵'
+        // }
+
+        let obj = {
+            0: 'a',
+            1: 'b',
+            2: 'c',
+            3: 'd',
+            length:5,
+            [Symbol.iterator]: function () {
+                let curIndex = 0;
+                let next = () => {
+                    return {
+                        value: this[curIndex],//表示当前迭代的这个值
+                        done: this.length == ++curIndex,//表示有没有迭代完
+                    }
+                }
+                return {
+                    next
+                }
+            }
+        }
+
+        // 给没有symbol.iterator的数据类型中增加Symbol.iterator要严格按照ES6中的规范给他增加一个迭代函数 ：
+        // iterator实现规则：next value done
+        // 必须有返回值，必须有next方法
+        console.log([...obj])
+        for(let p of obj){
+            console.log(p);
+        }
+
+    </script>
+</body>
+
+</html>

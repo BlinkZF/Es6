@@ -1,0 +1,31 @@
+iterator
+迭代模式：提供一种方法可以顺序获取聚合对象中的各个元素，是一种最简单，也是最常见的设计模式，
+        他可以让用户通过特定的接口寻访集合中的每一个元素，而不用了解底层的实现
+迭代器简介：依照迭代模式思想来实现的，迭代器分为内部和外部两种迭代器
+
+    内部迭代器:本身是函数，该函数内部定义好迭代规则，完全接收整个迭代过程
+    外部只需要一次初始调用：Array.prototype.forEach,jQuery.each等都是内部迭代器
+    jQuery.each不仅能迭代数组，还能迭代对象
+
+    外部迭代器:本身是函数，执行返回迭代对象，迭代下一个元素必须显示调用，调用复杂度增加，但是灵活性增强
+    function outerItreator(){}外部迭代器
+
+迭代器的目的：从迭代模式思想中可以看出，就是要标准化迭代操作
+    el:服务端提供数组数据给前端，前端for循环遍历，由于业务变化，使得数据结构发生变换，返回对象或者set Map
+    导致前端便利代码大量重写，
+    解决方案：es6引入Iterator，部署在NodeList，arguments，Array，set，map，字符串上的数据的
+    Symbol.iterator属性，为了让这些属性有一个统一的便利，方便写代码的时候不用大范围的重构,
+    NodeList，arguments，Array，set，map:这些原型上都有Symbol.iterator这个属性，这些属性都等于迭代函数
+    使得这些数据是iterable可迭代的，能进行for of...Array.from等操作
+
+Symbol：第七种数据结构(前六种数据结构:Number,string,object(复杂数据类型),undefind,boolean,function)
+
+    特点:唯一，可作为对象的属性，有静态属性Symbol.iterator
+
+
+Generator ->生成迭代对象
+    Generator(生成器)，本身是函数，执行后返回迭代对象，函数内部要配合yield使用Generator函数会分段执行，遇到yield即暂停
+    特点：function和函数名之间需要带*
+    函数内部yield表达式，产出不同的内部状态
+
+Co递归方法库  作者：TJ  express  koa
