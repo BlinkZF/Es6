@@ -8,3 +8,9 @@ async:是一个函数，是Generator的语法糖，
 3：同步并发异步的结果
 
 babel转化：npx babel async+await.js -o demo.js
+
+Generator的声明方式类似一般的函数声明，只是多了个*号，并且一般可以在函数内看到yield关键字
+yield和yield*
+有时候，我们会看到yield之后跟了一个*号
+yield* 让它自动遍历进该对象 可以让后面的参数进行便利
+要注意的是，这yield和yield* 只能在generator函数内部使用，一般的函数内使用会报错
